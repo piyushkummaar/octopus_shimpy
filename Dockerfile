@@ -23,6 +23,7 @@ ARG TENTACLES_URL_TAG=""
 ENV TENTACLES_URL_TAG=$TENTACLES_URL_TAG
 
 WORKDIR /octobot
+CMD ["chmod", "777","octobot"]
 COPY --from=base /opt/venv /opt/venv
 COPY octobot/config /octobot/octobot/config
 COPY docker-entrypoint.sh docker-entrypoint.sh
@@ -41,6 +42,3 @@ EXPOSE 5001
 
 HEALTHCHECK --interval=1m --timeout=30s --retries=3 CMD curl --fail http://localhost:5001 || exit 1
 ENTRYPOINT ["./docker-entrypoint.sh"]
-
-# Run the app.  CMD is required to run on Heroku            
-CMD gunicorn gettingstarted.wsgi --log-file -
