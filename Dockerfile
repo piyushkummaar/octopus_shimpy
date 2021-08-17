@@ -13,7 +13,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 COPY . .
 RUN pip install -U setuptools wheel pip>=20.0.0 \
-    && pip install Cython==0.29.21 \
+    && pip install Cython \
     && pip install --prefer-binary -r requirements.txt \
     && python setup.py install
 
@@ -23,7 +23,6 @@ ARG TENTACLES_URL_TAG=""
 ENV TENTACLES_URL_TAG=$TENTACLES_URL_TAG
 
 WORKDIR /octobot
-CMD ["chmod", "777","octobot"]
 COPY --from=base /opt/venv /opt/venv
 COPY octobot/config /octobot/octobot/config
 COPY docker-entrypoint.sh docker-entrypoint.sh
