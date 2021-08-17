@@ -41,3 +41,6 @@ EXPOSE 5001
 
 HEALTHCHECK --interval=1m --timeout=30s --retries=3 CMD curl --fail http://localhost:5001 || exit 1
 ENTRYPOINT ["./docker-entrypoint.sh"]
+
+# Run the app.  CMD is required to run on Heroku            
+CMD gunicorn gettingstarted.wsgi --log-file -
