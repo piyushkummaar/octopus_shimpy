@@ -3,7 +3,6 @@ build:
     web: Dockerfile
     version: "3"
 
-services:
   octobot:
     image: drakkarsoftware/octobot:stable
     environment:
