@@ -3,7 +3,6 @@ build:
     web: Dockerfile
     version: "3"
 
-  octobot:
     image: drakkarsoftware/octobot:stable
     environment:
       - VIRTUAL_HOST=${HOST}
@@ -18,7 +17,6 @@ build:
        - 5001
     restart: always
 
-  nginx:
     image: jwilder/nginx-proxy:alpine
     ports:
       - 80:80
@@ -32,7 +30,6 @@ build:
     depends_on:
       - octobot
 
-  nginx-companion:
     container_name: proxy-companion
     restart: always
     image: sebastienheyd/self-signed-proxy-companion:latest
